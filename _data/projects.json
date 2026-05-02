@@ -1,6 +1,10 @@
 [
   {
     "id": "brownie",
+    "icon": "/assets/brownie/icon.png",
+    "screenshots": [
+      "/assets/brownie/screenshots/1.jpg"
+    ],
     "name": "Brownie",
     "tagline": "Search Movies in a Flash",
     "blurb": "Another simple movie search application made with Svelte and Tailwind. Type, find, watch.",
@@ -19,6 +23,13 @@
   },
   {
     "id": "matcha",
+    "icon": "/assets/matcha/icon.png",
+    "screenshots": [
+      "/assets/matcha/screenshots/1.png",
+      "/assets/matcha/screenshots/2.png",
+      "/assets/matcha/screenshots/3.png",
+      "/assets/matcha/screenshots/4.png"
+    ],
     "name": "Matcha",
     "tagline": "Simple, Budget on Your Hand",
     "blurb": "A budget application built with love. Track spending without the spreadsheet.",
@@ -36,6 +47,12 @@
   },
   {
     "id": "eco-cycle",
+    "icon": "/assets/eco-cycle/icon.webp",
+    "screenshots": [
+      "/assets/eco-cycle/screenshots/1.webp",
+      "/assets/eco-cycle/screenshots/2.webp",
+      "/assets/eco-cycle/screenshots/3.webp"
+    ],
     "name": "ECO-CYCLE",
     "tagline": "Recycle Places, One Tap Away",
     "blurb": "Clean, simple Hong Kong recycle map helper. Open-source government data, surfaced beautifully.",
@@ -54,6 +71,11 @@
   },
   {
     "id": "deadstock",
+    "icon": "/assets/deadstock/icon.png",
+    "screenshots": [
+      "/assets/deadstock/screenshots/1.png",
+      "/assets/deadstock/screenshots/2.png"
+    ],
     "name": "DeadStock",
     "tagline": "Authentic Sneakers, Online",
     "blurb": "An information centre and exchange for Hong Kong sneakerheads.",
@@ -71,6 +93,12 @@
   },
   {
     "id": "hoopcam",
+    "icon": "/assets/hoopcam/icon.png",
+    "screenshots": [
+      "/assets/hoopcam/screenshots/1.webp",
+      "/assets/hoopcam/screenshots/2.webp",
+      "/assets/hoopcam/screenshots/3.webp"
+    ],
     "name": "HoopCam",
     "tagline": "Turn Basketball into a Career",
     "blurb": "HoopCam makes basketball an eSport so passionate players can earn as they play and grow the game worldwide.",
@@ -89,6 +117,12 @@
   },
   {
     "id": "filmate",
+    "icon": "/assets/filmate/icon.png",
+    "screenshots": [
+      "/assets/filmate/screenshots/1.png",
+      "/assets/filmate/screenshots/2.png",
+      "/assets/filmate/screenshots/3.png"
+    ],
     "name": "Filmate",
     "tagline": "以戲會友，一拍即合",
     "blurb": "An elegant application to help you find your film-mate. Friendship through cinema.",
@@ -106,6 +140,8 @@
   },
   {
     "id": "lynk",
+    "icon": "/assets/lynk/icon.svg",
+    "screenshots": [],
     "name": "Lynk",
     "tagline": "Connecting the World's Greatest Minds",
     "blurb": "Web management platforms for enterprise clients, internal systems, agile delivery, and React Native + native mobile work.",
@@ -123,6 +159,8 @@
   },
   {
     "id": "fina",
+    "icon": "/assets/fina/icon.svg",
+    "screenshots": [],
     "name": "Fina",
     "tagline": "A Smart Girl Who Helps Your Finance",
     "blurb": "A friendly companion for personal finance. Concept and design exploration.",
@@ -140,6 +178,8 @@
   },
   {
     "id": "hot-spot",
+    "icon": "/assets/hot-spot/icon.png",
+    "screenshots": [],
     "name": "Hot Spot",
     "tagline": "Optimize with a Sixth Sense",
     "blurb": "Hacking with thermal imaging — a FLIR ONE / Lepton hackathon entry. If you had thermal vision, what would you build?",
@@ -157,6 +197,8 @@
   },
   {
     "id": "booster",
+    "icon": "/assets/booster/icon.png",
+    "screenshots": [],
     "name": "Booster",
     "tagline": "Work Out with a Sixth Sense",
     "blurb": "Thermal-imaging fitness experiment. Same FLIR hackathon, different superpower.",
