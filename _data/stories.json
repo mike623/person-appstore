@@ -1,0 +1,31 @@
+[
+  {
+    "id": "today",
+    "eyebrow": "TODAY · APR 27",
+    "title": "Hi, I'm Mike — a software engineer",
+    "subtitle": "Hong Kong · Building software & cathedrals since 2014.",
+    "bg": "linear-gradient(135deg, #F7F2EA 0%, #EAD8C0 60%, #C9A57A 100%)",
+    "fg": "#1A1A1A",
+    "kind": "intro"
+  },
+  {
+    "id": "featured-hoopcam",
+    "eyebrow": "OUR PICK",
+    "title": "HoopCam",
+    "subtitle": "Turn basketball passion into a career.",
+    "bg": "linear-gradient(135deg, #FFB37A 0%, #E27A3F 50%, #A8421A 100%)",
+    "fg": "#FFFFFF",
+    "kind": "project",
+    "projectId": "hoopcam"
+  },
+  {
+    "id": "featured-filmate",
+    "eyebrow": "WE LOVE",
+    "title": "Filmate",
+    "subtitle": "以戲會友，一拍即合 — friends through film.",
+    "bg": "linear-gradient(135deg, #FFC2CD 0%, #F1546B 55%, #7A1428 100%)",
+    "fg": "#FFFFFF",
+    "kind": "project",
+    "projectId": "filmate"
+  }
+]

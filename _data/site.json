@@ -1,0 +1,21 @@
+{
+  "title": "Mike Wong — Portfolio",
+  "name": "Mike Wong",
+  "handle": "mike623",
+  "role": "Software engineer · Hong Kong",
+  "location": "Hong Kong",
+  "email": "hello@namike.me",
+  "github": "https://github.com/mike623",
+  "resume": "#",
+  "quote": "Software and cathedrals are much the same — first we build them, then we pray.",
+  "status": "Open to new roles · 2026",
+  "bio": "Building software & cathedrals since 2014.",
+  "yearsBuilding": "12+",
+  "languages": "EN · 中文",
+  "stack": [
+    { "k": "Mobile",  "v": "React Native · Native iOS · Native Android" },
+    { "k": "Web",     "v": "React · Svelte · TypeScript · Tailwind" },
+    { "k": "Backend", "v": "Node · APIs · Postgres · the boring middle" },
+    { "k": "Lead",    "v": "Agile teams · Requirement gathering · Solution design" }
+  ]
+}
