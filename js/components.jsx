@@ -4,6 +4,18 @@ const { useState, useEffect, useRef } = React;
 function ProjectTile({ project, size = 56, radius }) {
   const r = radius ?? Math.round(size * 0.225);
   const fontSize = Math.round(size * 0.42);
+  if (project.icon) {
+    return (
+      <img
+        src={project.icon}
+        width={size} height={size}
+        alt={project.name}
+        draggable={false}
+        style={{ width: size, height: size, borderRadius: r, flexShrink: 0, objectFit: 'cover',
+          boxShadow: 'inset 0 0 0 0.5px rgba(0,0,0,0.08)', display: 'block' }}
+      />
+    );
+  }
   return (
     <div style={{
       width: size, height: size, borderRadius: r,
@@ -278,15 +290,23 @@ function DetailSheet({ project, onClose }) {
         <section className="sheet-section">
           <h3 className="sheet-section-title">Preview</h3>
           <div className="sheet-screens">
-            {[0, 1, 2].map((i) => (
-              <div key={i} className="screen-frame">
-                <div className="screen-fill"
-                     style={{ background: `linear-gradient(${140 + i * 30}deg, ${project.tint.from}, ${project.tint.to})` }}>
-                  <div className="screen-mono">{project.monogram}</div>
-                  <div className="screen-cap">{i === 0 ? 'Home' : i === 1 ? 'Detail' : 'Action'}</div>
-                </div>
-              </div>
-            ))}
+            {(project.screenshots && project.screenshots.length > 0)
+              ? project.screenshots.map((src, i) => (
+                  <div key={i} className="screen-frame">
+                    <img src={src} alt={`${project.name} screenshot ${i + 1}`}
+                         style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  </div>
+                ))
+              : [0, 1, 2].map((i) => (
+                  <div key={i} className="screen-frame">
+                    <div className="screen-fill"
+                         style={{ background: `linear-gradient(${140 + i * 30}deg, ${project.tint.from}, ${project.tint.to})` }}>
+                      <div className="screen-mono">{project.monogram}</div>
+                      <div className="screen-cap">{i === 0 ? 'Home' : i === 1 ? 'Detail' : 'Action'}</div>
+                    </div>
+                  </div>
+                ))
+            }
           </div>
         </section>
 
