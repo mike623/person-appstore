@@ -196,6 +196,25 @@
     "summary": "A thermal-vision sixth sense."
   },
   {
+    "id": "mr-carson",
+    "icon": "/assets/mr-carson/icon.svg",
+    "screenshots": [],
+    "name": "Mr. Carson",
+    "tagline": "Your Private Telegram Expense Butler",
+    "blurb": "A local-first Telegram bot that scans receipts, answers natural-language spending questions, and charts your budget — all inference runs via Ollama, so no data leaves your machine.",
+    "platform": "Self-hosted",
+    "language": "EN",
+    "category": "Finance",
+    "started": "May 2026",
+    "funniness": 4,
+    "stack": "TypeScript · Telegraf · Hono · Mastra · DuckDB · Ollama",
+    "url": "https://github.com/mike623/mr-carson",
+    "monogram": "MC",
+    "tint": { "from": "#3B2F6B", "to": "#1A1235" },
+    "hue": "#2C2258",
+    "summary": "A private, local-first AI butler for your expenses."
+  },
+  {
     "id": "booster",
     "icon": "/assets/booster/icon.png",
     "screenshots": [],
