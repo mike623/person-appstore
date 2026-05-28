@@ -212,6 +212,7 @@
     "monogram": "MC",
     "tint": { "from": "#3B2F6B", "to": "#1A1235" },
     "hue": "#2C2258",
+    "ai": true,
     "summary": "A private, local-first AI butler for your expenses."
   },
   {

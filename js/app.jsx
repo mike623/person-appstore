@@ -29,12 +29,19 @@ function TodayPage({ onOpen, onAbout }) {
       <PageHeader kicker={todayKicker()} title="Today" />
       <div className="today-page-grid">
         <TodayHero roles={window.ROLES} onPick={onAbout} />
-        <FeaturedCard
-          project={window.PROJECTS.find((p) => p.id === 'hoopcam')}
-          eyebrow="OUR PICK OF THE WEEK"
-          onOpen={onOpen}
-        />
       </div>
+
+      <FeaturedCard
+        project={window.PROJECTS.find((p) => p.id === 'mr-carson')}
+        eyebrow="AI DRIVEN"
+        onOpen={onOpen}
+      />
+
+      <FeaturedCard
+        project={window.PROJECTS.find((p) => p.id === 'hoopcam')}
+        eyebrow="OUR PICK OF THE WEEK"
+        onOpen={onOpen}
+      />
 
       <SectionHeader kicker="FROM MIKE" title="A handful of side quests" />
       <div className="mid-row">

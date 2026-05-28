@@ -143,6 +143,7 @@ function MikeFace({ size = 44 }) {
 }
 
 function FeaturedCard({ project, eyebrow, onOpen }) {
+  if (!project) return null;
   return (
     <article
       className="featured-card"
