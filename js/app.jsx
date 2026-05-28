@@ -9,6 +9,19 @@ function todayKicker() {
   return `${day} · ${mon} ${date}`;
 }
 
+// Rotate weekly pick by ISO week number — deterministic, no hardcode.
+const WEEKLY_PICK_POOL = [
+  'brownie', 'matcha', 'eco-cycle', 'deadstock', 'hoopcam',
+  'lynk', 'fina', 'hot-spot', 'booster',
+];
+
+function weeklyPickId() {
+  const now = new Date();
+  const jan4 = new Date(now.getFullYear(), 0, 4);
+  const week = Math.ceil(((now - jan4) / 86400000 + jan4.getDay() + 1) / 7);
+  return WEEKLY_PICK_POOL[week % WEEKLY_PICK_POOL.length];
+}
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "light",
   "density": "cozy",
@@ -38,7 +51,7 @@ function TodayPage({ onOpen, onAbout }) {
       />
 
       <FeaturedCard
-        project={window.PROJECTS.find((p) => p.id === 'hoopcam')}
+        project={window.PROJECTS.find((p) => p.id === weeklyPickId())}
         eyebrow="OUR PICK OF THE WEEK"
         onOpen={onOpen}
       />
