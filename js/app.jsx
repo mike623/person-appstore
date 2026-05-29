@@ -208,6 +208,11 @@ function AboutPage() {
           <div className="contact-k">Resume</div>
           <div className="contact-v">PDF, fresh</div>
         </a>
+        <a className="contact-tile" href="/pitch.html" target="_blank" rel="noopener noreferrer">
+          <div className="contact-icon">▶</div>
+          <div className="contact-k">Pitch Deck</div>
+          <div className="contact-v">Interactive slides</div>
+        </a>
       </div>
       <FooterNote />
     </div>

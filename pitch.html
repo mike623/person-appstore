@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mike Wong — Senior Software Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+
+:root{
+  --bg:#07090f;
+  --bg2:#0c1120;
+  --accent:#6366f1;
+  --accent-lt:#a5b4fc;
+  --purple:#8b5cf6;
+  --green:#10b981;
+  --green-lt:#34d399;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --dim:#475569;
+  --border:rgba(255,255,255,0.07);
+  --card:rgba(255,255,255,0.03);
+}
+
+html,body{
+  height:100%;overflow:hidden;
+  font-family:'Inter',-apple-system,sans-serif;
+  background:var(--bg);color:var(--text);
+  -webkit-font-smoothing:antialiased;
+  cursor:pointer;
+}
+
+/* ── DECK ─────────────────────────────────────── */
+.deck{width:100vw;height:100vh;overflow:hidden;position:relative}
+
+.slide{
+  position:absolute;inset:0;
+  display:flex;align-items:center;justify-content:center;
+  padding:64px 80px;
+  opacity:0;transform:translateY(16px);
+  transition:opacity .45s cubic-bezier(.4,0,.2,1),transform .45s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.slide.active{opacity:1;transform:translateY(0);pointer-events:all}
+.slide.out{opacity:0;transform:translateY(-16px)}
+
+/* ── STEP REVEAL (base) ───────────────────────── */
+.step{
+  opacity:0;transform:translateY(14px);
+  transition:opacity .42s cubic-bezier(.4,0,.2,1),transform .42s cubic-bezier(.4,0,.2,1);
+  pointer-events:none;
+}
+.step.in{opacity:1;transform:translateY(0);pointer-events:auto}
+
+/* ── NAV ──────────────────────────────────────── */
+.nav{
+  position:fixed;bottom:28px;left:50%;transform:translateX(-50%);
+  display:flex;align-items:center;gap:16px;z-index:1000;
+  background:rgba(12,17,32,.88);
+  backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);
+  border:1px solid var(--border);border-radius:999px;
+  padding:10px 22px;box-shadow:0 8px 32px rgba(0,0,0,.4);cursor:default;
+}
+.nav-btn{
+  background:none;border:none;color:var(--dim);cursor:pointer;
+  font-size:18px;line-height:1;padding:4px 6px;transition:color .2s;
+}
+.nav-btn:hover:not(:disabled){color:var(--text)}
+.nav-btn:disabled{opacity:.25;cursor:default}
+.dots{display:flex;gap:7px;align-items:center}
+.dot{
+  width:7px;height:7px;border-radius:999px;background:var(--dim);
+  cursor:pointer;transition:all .3s cubic-bezier(.4,0,.2,1);border:none;padding:0;
+}
+.dot.active{width:22px;background:var(--accent)}
+.nav-label{font-size:11px;font-weight:600;color:var(--dim);min-width:32px;text-align:center}
+.step-dots{display:flex;gap:4px;align-items:center;padding:0 2px}
+.sdot{
+  width:5px;height:5px;border-radius:50%;
+  background:var(--dim);opacity:.45;
+  transition:background .25s,opacity .25s;border:none;padding:0;
+}
+.sdot.done{background:var(--accent-lt);opacity:1}
+
+/* ── GRID BG ──────────────────────────────────── */
+.grid-bg{
+  position:absolute;inset:0;pointer-events:none;
+  background-image:linear-gradient(var(--border) 1px,transparent 1px),
+                   linear-gradient(90deg,var(--border) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black,transparent);
+  -webkit-mask-image:radial-gradient(ellipse 75% 75% at 50% 50%,black,transparent);
+}
+
+/* ── SHARED ───────────────────────────────────── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--accent-lt);margin-bottom:16px;
+}
+.s-title{font-size:clamp(34px,4vw,50px);font-weight:800;line-height:1.1;margin-bottom:10px}
+.s-sub{font-size:16px;color:var(--muted);line-height:1.6;margin-bottom:36px}
+
+/* ripple */
+.ripple{
+  position:fixed;border-radius:50%;
+  background:rgba(255,255,255,.05);
+  transform:scale(0);pointer-events:none;z-index:9999;
+  animation:ripple .5s ease-out forwards;
+}
+@keyframes ripple{to{transform:scale(5);opacity:0}}
+
+/* ════════════════════════════════════════════════
+   SLIDE 1 — HERO
+════════════════════════════════════════════════ */
+.s1{
+  background:
+    radial-gradient(ellipse 900px 700px at 15% 55%,rgba(99,102,241,.13) 0%,transparent 65%),
+    radial-gradient(ellipse 600px 400px at 85% 15%,rgba(139,92,246,.08) 0%,transparent 60%),
+    var(--bg);
+}
+.hero-wrap{max-width:960px;width:100%}
+.status-pill{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(16,185,129,.1);border:1px solid rgba(16,185,129,.22);
+  border-radius:999px;padding:8px 18px;margin-bottom:36px;
+  font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--green-lt);
+}
+.blink{
+  width:8px;height:8px;border-radius:50%;background:var(--green);
+  box-shadow:0 0 8px var(--green);animation:blink 2s ease-in-out infinite;
+}
+@keyframes blink{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.35;transform:scale(.75)}}
+.hero-name{
+  font-size:clamp(58px,8vw,96px);font-weight:900;line-height:1;
+  letter-spacing:-.035em;margin-bottom:14px;
+  background:linear-gradient(135deg,#fff 0%,#c7d2fe 45%,#a78bfa 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hero-role{
+  font-size:clamp(17px,2.2vw,24px);color:var(--muted);font-weight:400;margin-bottom:32px;
+}
+.hero-role em{font-style:normal;color:var(--text);font-weight:600}
+.hero-line{
+  font-size:clamp(15px,1.7vw,20px);color:var(--muted);
+  line-height:1.65;max-width:600px;margin-bottom:52px;font-weight:300;
+}
+.hero-line strong{color:var(--text);font-weight:600}
+.hero-stats{display:flex;gap:52px}
+.hs{display:flex;flex-direction:column;gap:4px}
+.hs-n{font-size:clamp(30px,3.5vw,42px);font-weight:900;color:var(--accent-lt);line-height:1}
+.hs-l{font-size:12px;color:var(--muted);font-weight:500}
+
+/* ════════════════════════════════════════════════
+   SLIDE 2 — EIGHT HATS (exaggerated)
+════════════════════════════════════════════════ */
+.s2{
+  background:
+    radial-gradient(ellipse 500px 350px at 5% 20%,rgba(99,102,241,.14) 0%,transparent 65%),
+    radial-gradient(ellipse 400px 300px at 95% 80%,rgba(16,185,129,.12) 0%,transparent 60%),
+    radial-gradient(ellipse 350px 250px at 50% 100%,rgba(245,158,11,.08) 0%,transparent 60%),
+    var(--bg2);
+}
+
+.hats-wrap{max-width:1120px;width:100%}
+
+.hats-headline{
+  font-size:clamp(44px,5.5vw,72px);
+  font-weight:900;letter-spacing:-.04em;line-height:1;
+  margin-bottom:6px;
+}
+.hats-hl-1{
+  background:linear-gradient(90deg,#fff,#c7d2fe);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+}
+.hats-hl-2{
+  background:linear-gradient(90deg,#a5b4fc,#8b5cf6,#6366f1);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  font-size:clamp(28px,3.5vw,48px);
+}
+.hats-sub{font-size:15px;color:var(--muted);margin-bottom:28px;font-weight:400}
+
+.hats-grid{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+/* Each card uses CSS custom props for color */
+.hc{
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.07);
+  border-radius:14px;padding:22px 18px;
+  position:relative;overflow:hidden;
+  /* override generic .step for bounce */
+  transition:border-color .2s,box-shadow .2s;
+}
+/* colored top bar always visible */
+.hc::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  border-radius:14px 14px 0 0;
+  background:linear-gradient(90deg,var(--cc1),var(--cc2));
+}
+/* glow on hover */
+.hc:hover{
+  border-color:var(--cc1);
+  box-shadow:0 0 20px -6px var(--cc1);
+}
+
+/* hide/show via .step on .hc */
+.hc.step{
+  opacity:0;transform:scale(.82) translateY(18px);
+  pointer-events:none;
+  /* override generic step transition — use animation instead */
+  transition:border-color .2s,box-shadow .2s;
+}
+.hc.step.in{
+  animation:hpop .5s cubic-bezier(.34,1.56,.64,1) forwards;
+  pointer-events:auto;
+}
+@keyframes hpop{
+  from{opacity:0;transform:scale(.82) translateY(18px)}
+  to{opacity:1;transform:scale(1) translateY(0)}
+}
+
+/* Per-card accent colors */
+.hc:nth-child(1){--cc1:#6366f1;--cc2:#8b5cf6}
+.hc:nth-child(2){--cc1:#3b82f6;--cc2:#06b6d4}
+.hc:nth-child(3){--cc1:#06b6d4;--cc2:#0ea5e9}
+.hc:nth-child(4){--cc1:#10b981;--cc2:#34d399}
+.hc:nth-child(5){--cc1:#f59e0b;--cc2:#fb923c}
+.hc:nth-child(6){--cc1:#ef4444;--cc2:#f43f5e}
+.hc:nth-child(7){--cc1:#ec4899;--cc2:#a855f7}
+.hc:nth-child(8){--cc1:#f97316;--cc2:#fbbf24}
+
+.hc-ico{font-size:32px;margin-bottom:10px;display:block}
+.hc-title{font-size:14px;font-weight:700;margin-bottom:5px;color:var(--text)}
+.hc-desc{font-size:12px;color:var(--muted);line-height:1.55}
+
+/* ════════════════════════════════════════════════
+   SLIDE 3 — NUMBERS
+════════════════════════════════════════════════ */
+.s3{background:var(--bg)}
+.numbers-wrap{max-width:900px;width:100%}
+.num-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.num-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:20px;padding:36px 32px;position:relative;overflow:hidden;
+  transition:border-color .25s;
+}
+.num-card:hover{border-color:rgba(99,102,241,.3)}
+.num-bar{position:absolute;top:0;left:0;right:0;height:2px;border-radius:20px 20px 0 0}
+.c1 .num-bar{background:linear-gradient(90deg,#6366f1,#8b5cf6)}
+.c2 .num-bar{background:linear-gradient(90deg,#10b981,#34d399)}
+.c3 .num-bar{background:linear-gradient(90deg,#3b82f6,#06b6d4)}
+.c4 .num-bar{background:linear-gradient(90deg,#f59e0b,#ef4444)}
+.num-em{font-size:26px;margin-bottom:14px;display:block}
+.num-big{font-size:clamp(42px,5vw,62px);font-weight:900;line-height:1;margin-bottom:6px}
+.c1 .num-big{color:#a5b4fc}.c2 .num-big{color:#34d399}
+.c3 .num-big{color:#60a5fa}.c4 .num-big{color:#fbbf24}
+.num-desc{font-size:14px;color:var(--muted);line-height:1.5}
+
+/* ════════════════════════════════════════════════
+   SLIDE 4 — AI & FUTURE
+════════════════════════════════════════════════ */
+.s4{
+  background:
+    radial-gradient(ellipse 650px 550px at 35% 45%,rgba(139,92,246,.1) 0%,transparent 60%),
+    var(--bg2);
+}
+.ai-wrap{
+  max-width:900px;width:100%;
+  display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start;
+}
+.ai-items{display:flex;flex-direction:column;gap:14px}
+.ai-item{
+  display:flex;align-items:flex-start;gap:14px;
+  background:var(--card);border:1px solid var(--border);border-radius:14px;padding:18px;
+}
+.ai-ico{font-size:22px;flex-shrink:0;margin-top:1px}
+.ai-title{font-size:14px;font-weight:600;margin-bottom:3px}
+.ai-desc{font-size:13px;color:var(--muted);line-height:1.5}
+.cert-stack{display:flex;flex-direction:column;gap:12px}
+.cert-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--dim);margin-bottom:2px}
+.cert-card{
+  background:var(--card);border:1px solid var(--border);
+  border-radius:14px;padding:18px 20px;
+  display:flex;align-items:center;gap:14px;
+}
+.cert-ico{
+  width:42px;height:42px;border-radius:10px;
+  background:rgba(99,102,241,.18);display:flex;align-items:center;
+  justify-content:center;font-size:18px;flex-shrink:0;
+}
+.cert-n{font-size:13px;font-weight:600;margin-bottom:2px}
+.cert-m{font-size:11px;color:var(--muted)}
+.ai-quote{
+  background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.18);
+  border-radius:12px;padding:14px 18px;font-size:13px;color:#a5b4fc;
+  font-style:italic;line-height:1.5;
+}
+
+/* ── HINT ─────────────────────────────────────── */
+.hint{
+  position:fixed;bottom:28px;right:24px;
+  font-size:11px;color:var(--dim);cursor:default;pointer-events:none;
+  display:flex;align-items:center;gap:5px;
+}
+.hint kbd{
+  background:rgba(255,255,255,.07);border:1px solid var(--border);
+  border-radius:4px;padding:2px 5px;font-family:inherit;font-size:10px;
+}
+</style>
+</head>
+<body>
+
+<div class="deck" id="deck">
+
+<!-- ══ SLIDE 1: HERO ══════════════════════════════ -->
+<div class="slide s1 active" data-slide="0">
+  <div class="grid-bg"></div>
+  <div class="hero-wrap">
+    <div class="status-pill">
+      <div class="blink"></div>
+      Open to new opportunities
+    </div>
+    <div class="hero-name step">Mike Wong</div>
+    <div class="hero-role step">
+      <em>Senior Software Engineer</em> &nbsp;·&nbsp;
+      <em>Technical Lead</em> &nbsp;·&nbsp;
+      <em>Software Architect</em>
+    </div>
+    <p class="hero-line step">
+      <strong>13 years</strong> turning ideas into production systems at scale.<br>
+      I build things that <strong>actually matter</strong> — from NHS healthcare platforms
+      to <strong>AI-powered integrations</strong> that make teams faster.
+    </p>
+    <div class="hero-stats step">
+      <div class="hs"><span class="hs-n">13</span><span class="hs-l">Years experience</span></div>
+      <div class="hs"><span class="hs-n">15</span><span class="hs-l">Engineers led</span></div>
+      <div class="hs"><span class="hs-n">2M+</span><span class="hs-l">Patient records</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 2: EIGHT HATS (exaggerated) ══════════ -->
+<div class="slide s2" data-slide="1">
+  <div class="hats-wrap">
+    <div class="hats-headline">
+      <div class="hats-hl-1">One engineer.</div>
+      <div class="hats-hl-2">Eight hats. Every day.</div>
+    </div>
+    <p class="hats-sub">I don't just own one lane — I own the entire engineering lifecycle end to end.</p>
+    <div class="hats-grid">
+      <div class="hc step">
+        <span class="hc-ico">🏗️</span>
+        <div class="hc-title">Solution Architecture</div>
+        <div class="hc-desc">AWS-native microservices. 100+ integration event-driven platform built from scratch.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">🗄️</span>
+        <div class="hc-title">Database Design</div>
+        <div class="hc-desc">PostgreSQL, MySQL, DynamoDB, Elasticsearch — schema, indexing, query tuning at scale.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">👨‍💻</span>
+        <div class="hc-title">Hands-on Coding</div>
+        <div class="hc-desc">Still deep in the code. Node.js, React, AdonisJS — not ivory-tower architecture.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">🔄</span>
+        <div class="hc-title">CI/CD &amp; DevOps</div>
+        <div class="hc-desc">GitHub Actions pipelines, automated deploy, environment management, release reliability.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">⚡</span>
+        <div class="hc-title">Performance Optimisation</div>
+        <div class="hc-desc">10,000+ daily interactions. Profiling, caching, load balancing — fast under real pressure.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">🧪</span>
+        <div class="hc-title">Testing &amp; Quality</div>
+        <div class="hc-desc">Test strategy, code review standards, quality gates — culture that ships with confidence.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">👥</span>
+        <div class="hc-title">Team Leadership</div>
+        <div class="hc-desc">Leading &amp; mentoring 15 engineers. Architecture reviews, standards, delivery excellence.</div>
+      </div>
+      <div class="hc step">
+        <span class="hc-ico">🤝</span>
+        <div class="hc-title">Stakeholder Advisor</div>
+        <div class="hc-desc">CTO-level advisor. Clinical &amp; business needs → technical strategy and roadmap.</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 3: NUMBERS ═══════════════════════════ -->
+<div class="slide s3" data-slide="2">
+  <div class="numbers-wrap">
+    <div class="eyebrow">📊 Impact at scale</div>
+    <h2 class="s-title">Built for the big leagues.</h2>
+    <p class="s-sub">Real numbers. Real production. Real stakes.</p>
+    <div class="num-grid">
+      <div class="num-card c1 step">
+        <div class="num-bar"></div>
+        <span class="num-em">🏥</span>
+        <div class="num-big">2M+</div>
+        <div class="num-desc">Patient records managed on a single NHS-aligned platform</div>
+      </div>
+      <div class="num-card c2 step">
+        <div class="num-bar"></div>
+        <span class="num-em">🏢</span>
+        <div class="num-big">200+</div>
+        <div class="num-desc">Client organisations served across the UK healthcare sector</div>
+      </div>
+      <div class="num-card c3 step">
+        <div class="num-bar"></div>
+        <span class="num-em">👥</span>
+        <div class="num-big">15</div>
+        <div class="num-desc">Engineers led, mentored, and grown as technical team lead</div>
+      </div>
+      <div class="num-card c4 step">
+        <div class="num-bar"></div>
+        <span class="num-em">🔗</span>
+        <div class="num-big">100+</div>
+        <div class="num-desc">Integrations in a microservices + event-driven architecture</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ SLIDE 4: AI & FUTURE ════════════════════════ -->
+<div class="slide s4" data-slide="3">
+  <div class="ai-wrap">
+    <div>
+      <div class="eyebrow">🤖 What's next</div>
+      <h2 class="s-title">Leaning hard into AI.</h2>
+      <p class="s-sub">Not because it's trendy — because it genuinely changes what we can build for people.</p>
+      <div class="ai-items step">
+        <div class="ai-item">
+          <span class="ai-ico">🧠</span>
+          <div>
+            <div class="ai-title">Applied RAG in production</div>
+            <div class="ai-desc">Built AI-assisted data retrieval for clinical use cases — real systems, not demos</div>
+          </div>
+        </div>
+        <div class="ai-item">
+          <span class="ai-ico">🌏</span>
+          <div>
+            <div class="ai-title">Trilingual &amp; globally minded</div>
+            <div class="ai-desc">Chinese (native) · English (professional) · Mandarin — bridge between markets</div>
+          </div>
+        </div>
+        <div class="ai-item">
+          <span class="ai-ico">📈</span>
+          <div>
+            <div class="ai-title">Growth mindset, always</div>
+            <div class="ai-desc">Still studying, still shipping side projects, still upskilling — that's just who I am</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="cert-stack">
+      <div class="cert-label step">IBM Certified · May 2026</div>
+      <div class="cert-card step">
+        <div class="cert-ico">🔗</div>
+        <div>
+          <div class="cert-n">AI Agents with RAG &amp; LangChain</div>
+          <div class="cert-m">IBM · Credential WFAO8V8VO7JR</div>
+        </div>
+      </div>
+      <div class="cert-card step">
+        <div class="cert-ico">✍️</div>
+        <div>
+          <div class="cert-n">Generative AI: Prompt Engineering</div>
+          <div class="cert-m">IBM · Credential UK3WJM26IJ2G</div>
+        </div>
+      </div>
+      <div class="ai-quote step">
+        "The best time to add AI to your stack was 2 years ago. The second best time is now — and I'm on it."
+      </div>
+    </div>
+  </div>
+</div>
+
+</div><!-- /deck -->
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <button class="nav-btn" id="prev" disabled>&#8592;</button>
+  <div class="dots" id="dots"></div>
+  <div class="step-dots" id="sdots"></div>
+  <span class="nav-label" id="lbl">1 / 4</span>
+  <button class="nav-btn" id="next">&#8594;</button>
+</nav>
+
+<div class="hint">
+  <kbd>click</kbd> reveal &nbsp;·&nbsp; <kbd>←</kbd><kbd>→</kbd> slide &nbsp;·&nbsp; <kbd>F</kbd> fullscreen
+</div>
+
+<script>
+(function(){
+  const deck   = document.getElementById('deck');
+  const dotsEl = document.getElementById('dots');
+  const sdotsEl= document.getElementById('sdots');
+  const prevBtn= document.getElementById('prev');
+  const nextBtn= document.getElementById('next');
+  const lbl    = document.getElementById('lbl');
+
+  const slides   = Array.from(document.querySelectorAll('.slide'));
+  const N        = slides.length;
+  const allSteps = slides.map(s => Array.from(s.querySelectorAll('.step')));
+  let cur = 0, curStep = 0;
+
+  // Build slide dots
+  slides.forEach((_,i) => {
+    const d = document.createElement('button');
+    d.className = 'dot' + (i===0?' active':'');
+    d.addEventListener('click', e => { e.stopPropagation(); gotoSlide(i, i < cur); });
+    dotsEl.appendChild(d);
+  });
+
+  function buildStepDots(si) {
+    sdotsEl.innerHTML = '';
+    allSteps[si].forEach((_,i) => {
+      const d = document.createElement('div');
+      d.className = 'sdot' + (i < curStep ? ' done' : '');
+      sdotsEl.appendChild(d);
+    });
+  }
+
+  function updateStepDots() {
+    sdotsEl.querySelectorAll('.sdot').forEach((d,i) => d.classList.toggle('done', i < curStep));
+  }
+
+  function updateNav() {
+    dotsEl.querySelectorAll('.dot').forEach((d,i) => d.classList.toggle('active', i===cur));
+    lbl.textContent = (cur+1) + ' / ' + N;
+    prevBtn.disabled = cur === 0;
+    nextBtn.disabled = false; // last click always opens namike.me
+    buildStepDots(cur);
+  }
+
+  function advance() {
+    const steps = allSteps[cur];
+    if (curStep < steps.length) {
+      steps[curStep].classList.add('in');
+      curStep++;
+      updateStepDots();
+      // keep nextBtn enabled on last slide (one more click opens namike.me)
+    } else if (cur < N-1) {
+      gotoSlide(cur+1, false);
+    } else {
+      // Last slide, all steps revealed — go to personal site
+      window.open('https://namike.me', '_blank');
+    }
+  }
+
+  function gotoSlide(n, revealAll) {
+    if (n < 0 || n >= N) return;
+    slides[cur].classList.remove('active');
+    slides[cur].classList.add('out');
+    const prev = cur;
+    setTimeout(() => slides[prev].classList.remove('out'), 500);
+    cur = n; curStep = 0;
+    slides[cur].classList.add('active');
+    const steps = allSteps[cur];
+    steps.forEach(s => s.classList.remove('in'));
+    if (revealAll) { steps.forEach(s => s.classList.add('in')); curStep = steps.length; }
+    updateNav();
+  }
+
+  updateNav();
+
+  // Click on deck = advance
+  deck.addEventListener('click', e => {
+    if (e.target.closest('#nav') || e.target.closest('.hint')) return;
+    const r = document.createElement('div');
+    r.className = 'ripple';
+    const sz = 64;
+    r.style.cssText = `width:${sz}px;height:${sz}px;left:${e.clientX-sz/2}px;top:${e.clientY-sz/2}px`;
+    document.body.appendChild(r);
+    setTimeout(() => r.remove(), 500);
+    advance();
+  });
+
+  prevBtn.addEventListener('click', e => { e.stopPropagation(); gotoSlide(cur-1, true); });
+  nextBtn.addEventListener('click', e => { e.stopPropagation(); advance(); });
+
+  document.addEventListener('keydown', e => {
+    if (e.key==='ArrowRight'||e.key==='ArrowDown'||e.key===' '){ e.preventDefault(); advance(); }
+    else if (e.key==='ArrowLeft'||e.key==='ArrowUp'){ e.preventDefault(); gotoSlide(cur-1,true); }
+    else if (e.key==='f'||e.key==='F'){
+      if (!document.fullscreenElement) document.documentElement.requestFullscreen().catch(()=>{});
+      else document.exitFullscreen().catch(()=>{});
+    }
+  });
+
+  let tx = 0;
+  deck.addEventListener('touchstart', e => { tx = e.touches[0].clientX; }, {passive:true});
+  deck.addEventListener('touchend', e => {
+    const dx = tx - e.changedTouches[0].clientX;
+    if (Math.abs(dx) > 60) dx > 0 ? advance() : gotoSlide(cur-1,true);
+  }, {passive:true});
+})();
+</script>
+</body>
+</html>
