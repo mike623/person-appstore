@@ -1,5 +1,30 @@
 [
   {
+    "id": "panna-cotta",
+    "icon": "/assets/panna-cotta/icon.png",
+    "screenshots": [
+      "/assets/panna-cotta/screenshots/lan-grid-dark.png",
+      "/assets/panna-cotta/screenshots/lan-grid-light.png",
+      "/assets/panna-cotta/screenshots/lan-list-dark.png",
+      "/assets/panna-cotta/screenshots/lan-autocomplete.png"
+    ],
+    "name": "Panna Cotta",
+    "tagline": "Your Phone, Your Mac's Control Panel",
+    "blurb": "Turn any phone or tablet into a wireless Stream Deck for your Mac. Launch apps, control media, trigger shortcuts — over LAN via QR code.",
+    "platform": "macOS",
+    "language": "EN",
+    "category": "Utilities",
+    "started": "Jan 2025",
+    "funniness": 4,
+    "stack": "Rust · Tauri · React · Axum",
+    "url": "https://github.com/mike623/panna-cotta",
+    "monogram": "PC",
+    "tint": { "from": "#D4B896", "to": "#8B6241" },
+    "hue": "#A8784E",
+    "featured": true,
+    "summary": "Phone-powered control panel for your Mac."
+  },
+  {
     "id": "brownie",
     "icon": "/assets/brownie/icon.png",
     "screenshots": [
