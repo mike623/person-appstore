@@ -1,5 +1,25 @@
 [
   {
+    "id": "space-rig-quartermaster",
+    "icon": "/assets/space-rig-quartermaster/icon.svg",
+    "screenshots": [],
+    "name": "Space Rig Quartermaster",
+    "tagline": "Your Deep Rock Galactic Field Companion",
+    "blurb": "Mobile-first, local-first companion for Deep Rock Galactic: The Board Game. Track health, ammo, upgrades, penalties, and the Rig Shop economy — no account, works offline. Rock and Stone!",
+    "platform": "Web",
+    "language": "EN",
+    "category": "Games",
+    "started": "Jun 2026",
+    "funniness": 5,
+    "stack": "Vite · React · TypeScript · Zustand · PWA",
+    "url": "https://mike623.github.io/space-rig-quartermaster/",
+    "monogram": "⬡",
+    "tint": { "from": "#FFB000", "to": "#B25A00" },
+    "hue": "#E08A00",
+    "featured": true,
+    "summary": "Campaign bookkeeping for DRG board game nights."
+  },
+  {
     "id": "brownie",
     "icon": "/assets/brownie/icon.png",
     "screenshots": [
