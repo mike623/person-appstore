@@ -2,22 +2,30 @@
   {
     "id": "space-rig-quartermaster",
     "icon": "/assets/space-rig-quartermaster/icon.svg",
-    "screenshots": [],
+    "screenshots": [
+      "/assets/space-rig-quartermaster/screenshots/home-empty.png",
+      "/assets/space-rig-quartermaster/screenshots/setup.png",
+      "/assets/space-rig-quartermaster/screenshots/characters.png",
+      "/assets/space-rig-quartermaster/screenshots/end-mission.png",
+      "/assets/space-rig-quartermaster/screenshots/shop.png",
+      "/assets/space-rig-quartermaster/screenshots/launch.png",
+      "/assets/space-rig-quartermaster/screenshots/history.png"
+    ],
     "name": "Space Rig Quartermaster",
-    "tagline": "Your Deep Rock Galactic Field Companion",
-    "blurb": "Mobile-first, local-first companion for Deep Rock Galactic: The Board Game. Track health, ammo, upgrades, penalties, and the Rig Shop economy — no account, works offline. Rock and Stone!",
-    "platform": "Web",
+    "tagline": "Rock and Stone, Properly Logged",
+    "blurb": "Mobile-first, local-first campaign companion for Deep Rock Galactic: The Board Game Space Rig nights. Create an offline campaign, manage 1–4 dwarves, track HP, ammo, weapons, upgrades, penalties, Gold and Nitra, run the between-mission Rig Shop economy, then export/import a versioned JSON save or seeded campaign recipe. No accounts, no backend, no official rule text or proprietary assets — just table-friendly bookkeeping for the crew.",
+    "platform": "Web · PWA",
     "language": "EN",
     "category": "Games",
     "started": "Jun 2026",
     "funniness": 5,
-    "stack": "Vite · React · TypeScript · Zustand · PWA",
+    "stack": "Vite · React · TypeScript · Zustand · Zod · React Router · Playwright · PWA",
     "url": "https://mike623.github.io/space-rig-quartermaster/",
     "monogram": "⬡",
     "tint": { "from": "#FFB000", "to": "#B25A00" },
     "hue": "#E08A00",
     "featured": true,
-    "summary": "Campaign bookkeeping for DRG board game nights."
+    "summary": "Offline Space Rig campaign saves, dwarf tracking, shop economy, and shareable JSON."
   },
   {
     "id": "brownie",
