@@ -1,6 +1,6 @@
 [
   {
-    "id": "space-rig-quartermaster",
+"id": "space-rig-quartermaster",
     "icon": "/assets/space-rig-quartermaster/icon.svg",
     "screenshots": [
       "/assets/space-rig-quartermaster/screenshots/home-empty.png",
@@ -26,6 +26,31 @@
     "hue": "#E08A00",
     "featured": true,
     "summary": "Offline Space Rig campaign saves, dwarf tracking, shop economy, and shareable JSON."
+  },
+  {
+"id": "panna-cotta",
+    "icon": "/assets/panna-cotta/icon.png",
+    "screenshots": [
+      "/assets/panna-cotta/screenshots/lan-grid-dark.png",
+      "/assets/panna-cotta/screenshots/lan-grid-light.png",
+      "/assets/panna-cotta/screenshots/lan-list-dark.png",
+      "/assets/panna-cotta/screenshots/lan-autocomplete.png"
+    ],
+    "name": "Panna Cotta",
+    "tagline": "Your Phone, Your Mac's Control Panel",
+    "blurb": "Turn any phone or tablet into a wireless Stream Deck for your Mac. Launch apps, control media, trigger shortcuts — over LAN via QR code.",
+    "platform": "macOS",
+    "language": "EN",
+    "category": "Utilities",
+    "started": "Jan 2025",
+    "funniness": 4,
+    "stack": "Rust · Tauri · React · Axum",
+    "url": "https://github.com/mike623/panna-cotta",
+    "monogram": "PC",
+    "tint": { "from": "#D4B896", "to": "#8B6241" },
+    "hue": "#A8784E",
+    "featured": true,
+    "summary": "Phone-powered control panel for your Mac."
   },
   {
     "id": "brownie",
@@ -222,6 +247,26 @@
     "tint": { "from": "#FF7A3A", "to": "#C83014" },
     "hue": "#EE4F26",
     "summary": "A thermal-vision sixth sense."
+  },
+  {
+    "id": "mr-carson",
+    "icon": "/assets/mr-carson/icon.svg",
+    "screenshots": [],
+    "name": "Mr. Carson",
+    "tagline": "Your Private Telegram Expense Butler",
+    "blurb": "A local-first Telegram bot that scans receipts, answers natural-language spending questions, and charts your budget — all inference runs via Ollama, so no data leaves your machine.",
+    "platform": "Self-hosted",
+    "language": "EN",
+    "category": "Finance",
+    "started": "May 2026",
+    "funniness": 4,
+    "stack": "TypeScript · Telegraf · Hono · Mastra · DuckDB · Ollama",
+    "url": "https://github.com/mike623/mr-carson",
+    "monogram": "MC",
+    "tint": { "from": "#3B2F6B", "to": "#1A1235" },
+    "hue": "#2C2258",
+    "ai": true,
+    "summary": "A private, local-first AI butler for your expenses."
   },
   {
     "id": "booster",

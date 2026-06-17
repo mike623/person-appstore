@@ -9,6 +9,19 @@ function todayKicker() {
   return `${day} · ${mon} ${date}`;
 }
 
+// Rotate weekly pick by ISO week number — deterministic, no hardcode.
+const WEEKLY_PICK_POOL = [
+  'brownie', 'matcha', 'eco-cycle', 'deadstock', 'hoopcam',
+  'lynk', 'fina', 'hot-spot', 'booster',
+];
+
+function weeklyPickId() {
+  const now = new Date();
+  const jan4 = new Date(now.getFullYear(), 0, 4);
+  const week = Math.ceil(((now - jan4) / 86400000 + jan4.getDay() + 1) / 7);
+  return WEEKLY_PICK_POOL[week % WEEKLY_PICK_POOL.length];
+}
+
 const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
   "theme": "light",
   "density": "cozy",
@@ -29,12 +42,19 @@ function TodayPage({ onOpen, onAbout }) {
       <PageHeader kicker={todayKicker()} title="Today" />
       <div className="today-page-grid">
         <TodayHero roles={window.ROLES} onPick={onAbout} />
-        <FeaturedCard
-          project={window.PROJECTS.find((p) => p.id === 'hoopcam')}
-          eyebrow="OUR PICK OF THE WEEK"
-          onOpen={onOpen}
-        />
       </div>
+
+      <FeaturedCard
+        project={window.PROJECTS.find((p) => p.id === 'mr-carson')}
+        eyebrow="AI DRIVEN"
+        onOpen={onOpen}
+      />
+
+      <FeaturedCard
+        project={window.PROJECTS.find((p) => p.id === weeklyPickId())}
+        eyebrow="OUR PICK OF THE WEEK"
+        onOpen={onOpen}
+      />
 
       <SectionHeader kicker="FROM MIKE" title="A handful of side quests" />
       <div className="mid-row">
@@ -192,6 +212,11 @@ function AboutPage() {
           <div className="contact-icon">☕</div>
           <div className="contact-k">Support</div>
           <div className="contact-v">Buy me a coffee</div>
+        </a>
+        <a className="contact-tile" href="/pitch.html" target="_blank" rel="noopener noreferrer">
+          <div className="contact-icon">▶</div>
+          <div className="contact-k">Pitch Deck</div>
+          <div className="contact-v">Interactive slides</div>
         </a>
       </div>
       <FooterNote />
