@@ -255,6 +255,9 @@ function DetailSheet({ project, onClose }) {
                  onClick={(e) => { if (project.url === '#') e.preventDefault(); }}>
                 {project.url === '#' ? 'CONCEPT' : 'GET'}
               </a>
+              <a className="sheet-coffee" href="https://buymeacoffee.com/namike623z" target="_blank" rel="noopener noreferrer">
+                ☕ Support
+              </a>
               <span className="sheet-fineprint">In-Browser Purchases · Free</span>
             </div>
           </div>

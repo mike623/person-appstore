@@ -208,6 +208,11 @@ function AboutPage() {
           <div className="contact-k">Resume</div>
           <div className="contact-v">PDF, fresh</div>
         </a>
+        <a className="contact-tile" href="https://buymeacoffee.com/namike623z" target="_blank" rel="noopener noreferrer">
+          <div className="contact-icon">☕</div>
+          <div className="contact-k">Support</div>
+          <div className="contact-v">Buy me a coffee</div>
+        </a>
         <a className="contact-tile" href="/pitch.html" target="_blank" rel="noopener noreferrer">
           <div className="contact-icon">▶</div>
           <div className="contact-k">Pitch Deck</div>
@@ -232,7 +237,7 @@ function FooterNote() {
   return (
     <footer className="footer-note">
       <div>© 2026 Mike Wong</div>
-      <div>Refactored with love · namike.me</div>
+      <div>Refactored with love · <a href="https://buymeacoffee.com/namike623z" target="_blank" rel="noopener noreferrer">Buy me a coffee</a></div>
     </footer>
   );
 }
