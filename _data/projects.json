@@ -1,5 +1,31 @@
 [
   {
+    "id": "scottish-tartan-finder",
+    "icon": "/assets/scottish-tartan-finder/icon.svg",
+    "screenshots": [
+      "/assets/scottish-tartan-finder/screenshots/home.png",
+      "/assets/scottish-tartan-finder/screenshots/search.png",
+      "/assets/scottish-tartan-finder/screenshots/detail.png",
+      "/assets/scottish-tartan-finder/screenshots/categories.png",
+      "/assets/scottish-tartan-finder/screenshots/identify.png"
+    ],
+    "name": "Scottish Tartan Finder",
+    "tagline": "Every Tartan in Scotland, in One Place",
+    "blurb": "A calm, readable static catalogue of all 10,822 tartans from the Scottish Register of Tartans. Fuzzy-search by name, clan, district, designer or reference, browse A–Z or by category, and read the full record behind each design. Unofficial reference project — a weekly crawler discovers newly registered tartans and redeploys. No accounts, no clutter.",
+    "platform": "Web",
+    "language": "EN",
+    "category": "Reference",
+    "started": "Jul 2026",
+    "funniness": 4,
+    "stack": "Astro · TypeScript · Fuse.js · Cheerio · GitHub Actions · GitHub Pages",
+    "url": "https://mike623.github.io/scottish-tartan-finder/",
+    "monogram": "⌗",
+    "tint": { "from": "#3A6B4A", "to": "#1E3A28" },
+    "hue": "#2F5E3F",
+    "featured": true,
+    "summary": "Fuzzy-searchable catalogue of all 10,822 Scottish tartans, browsable and always attributed."
+  },
+  {
 "id": "space-rig-quartermaster",
     "icon": "/assets/space-rig-quartermaster/icon.svg",
     "screenshots": [
