@@ -153,7 +153,7 @@ function AboutPage() {
         </div>
         <div>
           <h2 className="about-name">{site.name || 'Mike Wong'}</h2>
-          <p className="about-role">{site.role || 'Software engineer · Hong Kong'}</p>
+          <p className="about-role">{site.role || 'Software engineer'}</p>
           <p className="about-quote">"{site.quote}"</p>
           <div className="about-status">
             <span className="status-dot" /> {site.status}

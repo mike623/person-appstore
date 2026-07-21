@@ -119,7 +119,7 @@ function TodayHero({ roles, onPick }) {
       <div className="today-foot">
         <div className="today-foot-text">
           <div className="today-name">Mike Wong</div>
-          <div className="today-loc">Hong Kong · Open to new roles</div>
+          <div className="today-loc">{(window.SITE || {}).bio || 'Building software & cathedrals since 2014.'}</div>
         </div>
         <button className="today-cta" onClick={(e) => { e.stopPropagation(); onPick(); }}>
           See Story
