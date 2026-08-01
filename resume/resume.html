@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mike Wong — Résumé</title>
+<style>
+  /* ---------- tokens ---------- */
+  :root{
+    --navy:#1f2b3a;        /* sidebar */
+    --navy-soft:#8ba0b6;   /* sidebar muted text */
+    --ink:#1a1f26;         /* main text */
+    --muted:#5b6672;       /* dates / secondary */
+    --rule:#e3e7ec;
+    --accent:#0A84FF;      /* matches portfolio */
+    --page:210mm;
+    --side:64mm;
+    --pad:12mm;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0}
+  body{
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink);
+    background:#c9ced6;
+    font-size:10.2pt;
+    line-height:1.42;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--accent);text-decoration:none}
+
+  /* ---------- page frame ---------- */
+  .sheet{
+    width:var(--page);
+    min-height:297mm;
+    margin:14px auto;
+    background:#fff;
+    display:grid;
+    grid-template-columns:var(--side) 1fr;
+    box-shadow:0 6px 30px rgba(0,0,0,.18);
+  }
+
+  /* ---------- sidebar ---------- */
+  .side{
+    background:var(--navy);
+    color:#fff;
+    padding:var(--pad) 10mm;
+    /* survive PDF export without "background graphics" toggle */
+    -webkit-print-color-adjust:exact;
+    print-color-adjust:exact;
+  }
+  .side h2{
+    font-size:8.4pt;
+    letter-spacing:.14em;
+    text-transform:uppercase;
+    color:var(--navy-soft);
+    margin:0 0 6px;
+    font-weight:600;
+  }
+  .side section{margin-bottom:16px}
+  .side a{color:#dfe8f2;word-break:break-word}
+  .side .row{margin:2px 0;color:#e7edf4}
+  .side .sub{color:var(--navy-soft);font-size:9pt}
+  .side ul{list-style:none;margin:0;padding:0}
+  .side li{margin:3px 0}
+
+  /* ---------- main ---------- */
+  .main{padding:var(--pad) 13mm}
+  .name{font-size:24pt;font-weight:700;letter-spacing:-.01em;margin:0}
+  .title{font-size:12pt;color:var(--muted);margin:2px 0 1px;font-weight:500}
+  .loc{font-size:9.4pt;color:var(--muted)}
+
+  .main h2{
+    font-size:10pt;
+    letter-spacing:.12em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin:20px 0 8px;
+    padding-bottom:4px;
+    border-bottom:1.5px solid var(--rule);
+  }
+  .summary{margin:12px 0 0;color:#2a323c}
+
+  /* skills */
+  .skill-group{margin:7px 0}
+  .skill-group .lbl{
+    font-weight:700;font-size:9.2pt;color:var(--ink);
+    display:inline-block;min-width:118px;vertical-align:top;
+  }
+  .skill-group .items{color:#33404d}
+  .hl{color:var(--accent);font-weight:600}
+
+  /* experience */
+  .job{margin:12px 0}
+  .job .head{display:flex;justify-content:space-between;gap:12px;align-items:baseline;break-after:avoid}
+  .job li{break-inside:avoid}          /* don't split a single bullet across pages */
+  h2{break-after:avoid}                /* section heading never sits alone at page foot */
+  .job .co{font-weight:700;font-size:10.6pt}
+  .job .role{color:#2a323c;font-weight:600}
+  .job .when{color:var(--muted);font-size:9pt;white-space:nowrap}
+  .job .where{color:var(--muted);font-size:9pt}
+  .job .lead{margin:4px 0 4px;color:#2a323c}
+  .job ul{margin:4px 0 0;padding-left:16px}
+  .job li{margin:2.5px 0;color:#2f3944}
+
+  .edu .co{font-weight:700}
+  .edu .sub{color:var(--muted);font-size:9.4pt}
+
+  /* ---------- print ---------- */
+  @page{size:A4;margin:12mm 0}   /* vertical breathing room on every printed page; sidebar stays flush L/R */
+  @media print{
+    body{background:#fff}
+    .sheet{width:auto;min-height:0;margin:0;box-shadow:none}
+    a{color:var(--ink)}
+    .side a{color:#dfe8f2}
+  }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script>
+/* =======================================================================
+   RÉSUMÉ DATA — edit this object to make a JD-tailored variant.
+   To tailor: copy this file to resume/resume-<company>.html, then
+   set  highlight:true  on the skills that JD cares about, reorder
+   experience bullets, and trim the summary. Nothing else to touch.
+   Phone deliberately omitted (repo is public); add it by hand on the
+   PDF you actually send.
+   ======================================================================= */
+const DATA = {
+  name: "Mike Wong",
+  title: "Senior Software Engineer",
+  location: "Doncaster, England, United Kingdom",
+
+  contact: [
+    { label: "Email",    text: "namike623@gmail.com", href: "mailto:namike623@gmail.com" },
+    { label: "LinkedIn", text: "in/mike-wong-namike", href: "https://www.linkedin.com/in/mike-wong-namike" },
+    { label: "GitHub",   text: "github.com/mike623",  href: "https://github.com/mike623" },
+    // ponytail: phone omitted from the public base — paste onto the sent PDF only
+  ],
+
+  summary:
+    "Senior software engineer and technical lead with 13+ years building full-stack products, " +
+    "currently driving architecture and delivery for an NHS-aligned healthcare platform serving " +
+    "200+ client organisations and 2M+ patient records. I specialise in cloud-native, event-driven " +
+    "systems on AWS and full-stack delivery with Node.js, React, and Next.js. Beyond the code, I lead " +
+    "and mentor a team of 15 engineers, partner with senior stakeholders on technical strategy, and " +
+    "increasingly focus on practical AI and data integration. I'm happiest where engineering rigour " +
+    "meets real-world impact.",
+
+  // highlight:true renders in accent — flip per JD
+  skills: [
+    { group: "Cloud & AWS", items: [
+      { name:"AWS", highlight:true },{name:"Lambda"},{name:"ECS"},{name:"Bedrock",highlight:true},
+      {name:"SQS"},{name:"SNS"},{name:"DynamoDB"},{name:"RDS"},{name:"Athena"},{name:"Glue"},
+      {name:"OpenSearch"},{name:"S3"} ] },
+    { group: "AI / GenAI", items: [
+      {name:"LangChain",highlight:true},{name:"LangGraph"},{name:"RAG",highlight:true},
+      {name:"AWS Bedrock"},{name:"OpenAI"},{name:"Anthropic Claude"},{name:"Google Gemini"},
+      {name:"Embeddings"},{name:"Vector search"},{name:"FAISS"} ] },
+    { group: "Frontend", items: [
+      {name:"React",highlight:true},{name:"Next.js",highlight:true},{name:"React Native"},
+      {name:"TypeScript",highlight:true},{name:"GraphQL"},{name:"Vite"},{name:"Module Federation"} ] },
+    { group: "Backend & Data", items: [
+      {name:"Node.js",highlight:true},{name:"AdonisJS"},{name:"PostgreSQL",highlight:true},
+      {name:"MySQL"},{name:"Prisma"},{name:"Knex.js"},{name:"Redis"},{name:"Event-driven pipelines"} ] },
+    { group: "DevOps", items: [
+      {name:"GitHub Actions"},{name:"CircleCI"},{name:"Terraform"},{name:"Docker"},
+      {name:"CI/CD"},{name:"Infrastructure as Code"} ] },
+  ],
+
+  languages: [
+    { name:"中文",    level:"Native / Bilingual" },
+    { name:"English", level:"Full Professional" },
+    { name:"普通話",  level:"Professional Working" },
+  ],
+
+  certifications: [
+    "Fundamentals of AI Agents Using RAG and LangChain",
+    "AWS Certified Solutions Architect – Associate",
+    "Generative AI: Prompt Engineering Basics",
+  ],
+
+  experience: [
+    {
+      company:"Blinx Solutions", role:"Senior Software Engineer",
+      when:"Jun 2021 – Jun 2026 · 5 yrs 1 mo", where:"United Kingdom",
+      lead:"Technical Lead and Architect for an NHS-aligned healthcare platform supporting 2M+ patient records across 200+ healthcare organisations.",
+      bullets:[
+        "Led and mentored a team of 15 engineers, driving architecture, engineering standards, technical strategy, and delivery excellence.",
+        "Partnered with the CTO and senior stakeholders to define platform strategy, solution architecture, and long-term technology roadmaps.",
+        "Architected and delivered cloud-native solutions on AWS using Lambda, ECS, Bedrock, SQS, SNS, DynamoDB, RDS, Athena, Glue, OpenSearch, PostgreSQL, and MySQL.",
+        "Designed and evolved a large-scale microservices and event-driven architecture with 100+ integrations for scalable, resilient, fault-tolerant healthcare services.",
+        "Led AI and Generative AI initiatives using agentic frameworks (ADK, AWS Bedrock, LangChain, LangGraph), OpenAI, Anthropic Claude, and Google Gemini — with vector search, embeddings, and Retrieval-Augmented Generation (RAG) architectures.",
+        "Developed secure full-stack applications using TypeScript, Node.js, AdonisJS, React, Next.js, GraphQL, and Vite.",
+        "Delivered highly available systems supporting 10,000+ daily patient interactions while maintaining performance, security, and reliability.",
+        "Established CI/CD and Infrastructure-as-Code practices using GitHub Actions, CircleCI, Terraform, Docker, and AWS-native tooling.",
+        "Spearheaded modernisation initiatives including migration from legacy applications to React/Next.js and microfrontend adoption via Module Federation.",
+        "Built scalable data and search platforms using PostgreSQL, Prisma, Knex.js, OpenSearch, FAISS vector search, Redis, and event-driven data pipelines.",
+        "Served as a trusted technical advisor to leadership, influencing enterprise architecture, cloud strategy, AI adoption, and engineering best practices.",
+      ],
+    },
+    {
+      // ponytail: LYNK end date (Nov 2021) overlaps Blinx start (Jun 2021) — verbatim from LinkedIn; correct the real dates if wrong
+      company:"LYNK", role:"Full Stack Engineer",
+      when:"Apr 2016 – Nov 2021 · 5 yrs 8 mos", where:"Hong Kong",
+      bullets:[
+        "Built a web management platform for enterprise clients.",
+        "Developed internal systems to enhance team performance.",
+        "Developed a web communication platform.",
+        "Ran an agile development team.",
+        "Gathered requirements with the project owner.",
+        "Involved in system solution design.",
+        "Mobile development with React Native and native languages.",
+      ],
+    },
+    {
+      company:"Sanuker", role:"Software Engineer",
+      when:"Feb 2015 – Mar 2016 · 1 yr 2 mos", where:"Hong Kong",
+      bullets:[
+        "Designed and developed native mobile apps.",
+        "Designed and developed web / hybrid mobile apps with Node.js and React.js.",
+        "Backend architecture design and development using Node.js, Java, and Ruby.",
+        "Big-data R&D and image processing with Python.",
+        "IoT development using Arduino, Raspberry Pi, and 3D printing.",
+        "Client requirement capture and analysis.",
+        "Project DevOps with Docker, AWS API, and Jenkins.",
+        "Project launching, testing, and management.",
+      ],
+    },
+    {
+      company:"Jardine OneSolution", role:"System Analyst",
+      when:"Aug 2014 – Jan 2015 · 6 mos", where:"Kwun Tong, Hong Kong",
+      bullets:[
+        "Client requirement consulting.",
+        "Custom solution development with MS-SQL and PHP.",
+        "In-house solution development with .NET.",
+      ],
+    },
+    {
+      company:"Creasant Digital", role:"Web Programmer",
+      when:"Dec 2012 – May 2014 · 1 yr 6 mos", where:"Kwun Tong, Hong Kong",
+      bullets:[
+        "Mobile / web application development with HTML, JavaScript, and CSS.",
+        "Internal system frontend and backend development with PHP and VB.",
+        "Existing website maintenance.",
+      ],
+    },
+  ],
+
+  education: [
+    { school:"The Hong Kong Polytechnic University", degree:"Bachelor of Arts (B.A.), Computing", when:"2014 – 2018" },
+  ],
+};
+
+/* ---------- render (minimal, no deps) ---------- */
+const e = (s) => String(s).replace(/[&<>]/g, c => ({ "&":"&amp;","<":"&lt;",">":"&gt;" }[c]));
+const skill = (i) => `<span class="${i.highlight ? "hl":""}">${e(i.name)}</span>`;
+
+const html = `
+<div class="sheet">
+  <aside class="side">
+    <section>
+      <h2>Contact</h2>
+      <ul>${DATA.contact.map(c =>
+        `<li><a href="${e(c.href)}">${e(c.text)}</a><div class="sub">${e(c.label)}</div></li>`).join("")}
+      </ul>
+    </section>
+    <section>
+      <h2>Languages</h2>
+      <ul>${DATA.languages.map(l =>
+        `<li class="row">${e(l.name)}<div class="sub">${e(l.level)}</div></li>`).join("")}
+      </ul>
+    </section>
+    <section>
+      <h2>Certifications</h2>
+      <ul>${DATA.certifications.map(c => `<li class="row">${e(c)}</li>`).join("")}</ul>
+    </section>
+  </aside>
+
+  <main class="main">
+    <h1 class="name">${e(DATA.name)}</h1>
+    <div class="title">${e(DATA.title)}</div>
+    <div class="loc">${e(DATA.location)}</div>
+
+    <h2>Summary</h2>
+    <p class="summary">${e(DATA.summary)}</p>
+
+    <h2>Skills</h2>
+    ${DATA.skills.map(g =>
+      `<div class="skill-group"><span class="lbl">${e(g.group)}</span><span class="items">${g.items.map(skill).join(" · ")}</span></div>`
+    ).join("")}
+
+    <h2>Experience</h2>
+    ${DATA.experience.map(j => `
+      <div class="job">
+        <div class="head">
+          <div><span class="co">${e(j.company)}</span> — <span class="role">${e(j.role)}</span></div>
+          <div class="when">${e(j.when)}</div>
+        </div>
+        <div class="where">${e(j.where)}</div>
+        ${j.lead ? `<p class="lead">${e(j.lead)}</p>` : ""}
+        <ul>${j.bullets.map(b => `<li>${e(b)}</li>`).join("")}</ul>
+      </div>`).join("")}
+
+    <h2>Education</h2>
+    ${DATA.education.map(ed => `
+      <div class="job edu">
+        <div class="head"><div class="co">${e(ed.school)}</div><div class="when">${e(ed.when)}</div></div>
+        <div class="sub">${e(ed.degree)}</div>
+      </div>`).join("")}
+  </main>
+</div>`;
+
+document.getElementById("root").innerHTML = html;
+</script>
+</body>
+</html>
