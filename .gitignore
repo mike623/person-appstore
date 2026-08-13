@@ -10,3 +10,9 @@ assets/**/.DS_Store
 js/chat.bundle.js
 lib/corpus.generated.mjs
 .env
+
+# Local Netlify folder
+.netlify
+
+# Cloudflare
+.wrangler/

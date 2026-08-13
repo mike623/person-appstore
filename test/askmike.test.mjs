@@ -1,7 +1,7 @@
 // Tests for the one seam: handleAskMike. No network, no real model, no fs.
 import { test } from 'node:test';
 import assert from 'node:assert/strict';
-import { MockLanguageModelV4, simulateReadableStream } from 'ai/test';
+import { MockLanguageModelV4 } from 'ai/test';
 import { handleAskMike, buildSystemPrompt } from '../lib/askmike.mjs';
 
 const CORPUS = {
@@ -12,21 +12,18 @@ const CORPUS = {
   site: { name: 'Mike Wong', email: 'hello@namike.me' },
 };
 
-// A mock model that records the prompt it was handed and returns a valid stream.
+// A mock model that records the prompt it was handed and returns a clean result.
+// The handler uses generateText (doGenerate), not streaming — see lib/askmike.mjs.
 function spyModel() {
   const calls = [];
   const model = new MockLanguageModelV4({
-    doStream: async (opts) => {
+    doGenerate: async (opts) => {
       calls.push(opts);
       return {
-        stream: simulateReadableStream({
-          chunks: [
-            { type: 'text-start', id: '0' },
-            { type: 'text-delta', id: '0', delta: 'Mike has 13 years of experience.' },
-            { type: 'text-end', id: '0' },
-            { type: 'finish', finishReason: 'stop', usage: { inputTokens: 10, outputTokens: 8, totalTokens: 18 } },
-          ],
-        }),
+        content: [{ type: 'text', text: 'Mike has 13 years of experience.' }],
+        finishReason: 'stop',
+        usage: { inputTokens: 10, outputTokens: 8, totalTokens: 18 },
+        warnings: [],
       };
     },
   });

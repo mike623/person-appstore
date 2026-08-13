@@ -1,0 +1,12 @@
+{
+  // Cloudflare Pages config for the person-appstore portfolio + AskMike chat.
+  "name": "person-appstore",
+  "compatibility_date": "2026-08-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // Eleventy output; `npm run build` (esbuild bundle + corpus gen + eleventy) fills it.
+  "pages_build_output_dir": "_site",
+  // Workers AI binding used by functions/api/askmike.js.
+  "ai": {
+    "binding": "AI"
+  }
+}
