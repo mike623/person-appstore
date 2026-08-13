@@ -5,6 +5,10 @@
 [build.environment]
   NODE_VERSION = "20"
 
+# AskMike chat backend. Function uses `export const config = { path: "/api/askmike" }`.
+[functions]
+  node_bundler = "esbuild"
+
 [[headers]]
   for = "/*"
   [headers.values]

@@ -29,8 +29,10 @@ permalink: /index.html
 </script>
 
 <script type="text/babel" src="/js/tweaks-panel.jsx"></script>
-<script type="text/babel" src="/js/chat.jsx"></script>
 <script type="text/babel" src="/js/components.jsx"></script>
+{# AskMike chat is bundled (esbuild) — plain script, shares window.React. Must
+   run before app.jsx (Babel) so window.AskMikePanel exists at render. #}
+<script defer src="/js/chat.bundle.js"></script>
 <script type="text/babel" src="/js/app.jsx"></script>
 </body>
 </html>
