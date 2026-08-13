@@ -14,7 +14,14 @@ const FALLBACK = 'nvidia/nemotron-3-super-120b-a12b:free';
 const corpus = CORPUS;
 
 export default async (request) => {
-  const openrouter = createOpenRouter({ apiKey: process.env.OPENROUTER_API_KEY });
+  const apiKey = process.env.OPENROUTER_API_KEY;
+  if (!apiKey) {
+    return new Response(JSON.stringify({ error: 'chat unavailable' }), {
+      status: 503,
+      headers: { 'content-type': 'application/json' },
+    });
+  }
+  const openrouter = createOpenRouter({ apiKey });
   const model = openrouter.chat(PRIMARY, { extraBody: { models: [PRIMARY, FALLBACK] } });
   return handleAskMike({ request, model, corpus });
 };
