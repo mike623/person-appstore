@@ -6,8 +6,8 @@ import { CORPUS } from '../../lib/corpus.generated.mjs';
 
 // Both verified live on OpenRouter at build; swap if deprecated. The `models`
 // array lets OpenRouter fail over automatically when the primary is rate-limited.
-const PRIMARY = 'meta-llama/llama-3.3-70b-instruct:free';
-const FALLBACK = 'qwen/qwen-2.5-72b-instruct:free';
+const PRIMARY = 'google/gemma-4-31b-it:free';
+const FALLBACK = 'nvidia/nemotron-3-super-120b-a12b:free';
 
 // Corpus is generated into a module at build (build/bundle.mjs) so it bundles
 // into the lambda — no runtime fs.
