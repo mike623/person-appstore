@@ -1,5 +1,5 @@
 // Build step (runs before Eleventy). Two jobs:
-//  1. Generate lib/corpus.generated.mjs from _data/ so the Netlify function
+//  1. Generate lib/corpus.generated.mjs from _data/ so the Cloudflare Pages function
 //     imports the corpus as bundled code — no fragile runtime fs in the lambda.
 //  2. Bundle the AskMike chat widget into js/chat.bundle.js, sharing the CDN's
 //     React via the react-shim alias (single instance).
