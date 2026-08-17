@@ -13,9 +13,11 @@
   "yearsBuilding": "12+",
   "languages": "EN · 中文",
   "stack": [
+    { "k": "Web",     "v": "React · Next.js · Svelte · TypeScript · Tailwind" },
     { "k": "Mobile",  "v": "React Native · Native iOS · Native Android" },
-    { "k": "Web",     "v": "React · Svelte · TypeScript · Tailwind" },
-    { "k": "Backend", "v": "Node · APIs · Postgres · the boring middle" },
-    { "k": "Lead",    "v": "Agile teams · Requirement gathering · Solution design" }
+    { "k": "Backend", "v": "Node · NestJS · GraphQL · Postgres · DynamoDB · the boring middle" },
+    { "k": "Cloud",   "v": "AWS · Lambda · ECS · CDK · Serverless — SA Associate" },
+    { "k": "AI/LLM",  "v": "Bedrock · LangChain · RAG · guardrails · eval suites" },
+    { "k": "Lead",    "v": "Solution architecture · Work breakdown · Mentoring" }
   ]
 }
