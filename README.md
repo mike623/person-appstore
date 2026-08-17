@@ -4,7 +4,7 @@ A personal portfolio built as an **Apple App Store**: browse projects like apps,
 
 Static site generated with [Eleventy](https://www.11ty.dev/), rendered by a small React app that reads everything from JSON data files. No build step for the app itself, no framework tooling to learn — edit a JSON file, add an icon, and a new "app" appears.
 
-- **Live:** deployed on Netlify from `_site`
+- **Live:** deployed on Cloudflare Pages from `_site`
 - **Aesthetic:** iOS / App Store — frosted glass, rounded tiles, tab bar, product sheets
 
 ## Features
@@ -39,7 +39,8 @@ npm run build
 .
 ├── index.njk            # Single template — HTML shell + data injection
 ├── .eleventy.js         # Eleventy config (passthrough copy, json filter)
-├── netlify.toml         # Build command + security headers
+├── _headers             # Cloudflare Pages security headers + .jsx MIME
+├── wrangler.jsonc       # Cloudflare Pages config + Workers AI binding
 ├── _data/
 │   ├── projects.json    # The app catalogue (one object per project)
 │   ├── stories.json     # Today-page editorial cards
@@ -98,4 +99,4 @@ The three `.jsx` files then run entirely in the browser via Babel standalone. Th
 
 ## Deployment
 
-Netlify builds with `npm run build` and publishes `_site/`. Security headers (`X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`) and the correct MIME type for `.jsx` files are configured in `netlify.toml`.
+Cloudflare Pages builds with `npm run build` and publishes `_site/`, driven by GitHub Actions (`.github/workflows/deploy.yml`) on push to `main`. The AskMike chat runs as a Pages Function (`functions/api/askmike.js`) backed by Workers AI. Security headers (`X-Frame-Options`, `X-Content-Type-Options`, `Referrer-Policy`) and the correct MIME type for `.jsx` files are configured in `_headers`.
