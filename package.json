@@ -3,10 +3,17 @@
   "version": "1.1.0",
   "description": "Mike Wong's portfolio — Apple App Store aesthetic",
   "scripts": {
-    "start": "eleventy --serve",
-    "build": "eleventy"
+    "start": "node build/bundle.mjs && eleventy --serve",
+    "build": "node build/bundle.mjs && eleventy",
+    "test": "node --test test/*.test.mjs"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0.1"
+    "@11ty/eleventy": "^2.0.1",
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "@ai-sdk/react": "^4.0.67",
+    "ai": "^7.0.64",
+    "workers-ai-provider": "^4.0.0"
   }
 }

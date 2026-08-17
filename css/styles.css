@@ -1116,6 +1116,50 @@ a { color: inherit; text-decoration: none; }
   to   { transform: translateY(0); opacity: 1; }
 }
 
+/* ---------- Ask Mike (hero chat) ---------- */
+.askmike{margin:16px 0 4px;cursor:default;display:flex;flex-direction:column;gap:10px}
+.askmike-top{display:flex;align-items:center;gap:7px}
+.askmike-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in oklab, var(--accent) 18%, transparent)}
+.askmike-label{font-size:10.5px;letter-spacing:0.12em;font-weight:700;opacity:0.62}
+.askmike-log{display:flex;flex-direction:column;gap:8px;max-height:190px;overflow-y:auto;padding:2px 2px 2px 0;scrollbar-width:thin}
+.askmike-msg{font-size:14px;line-height:1.45;max-width:88%;padding:9px 13px;border-radius:16px;text-wrap:pretty}
+.askmike-msg.user{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:6px}
+.askmike-msg.assistant{align-self:flex-start;background:rgba(255,255,255,0.82);border:1px solid rgba(0,0,0,0.06);border-bottom-left-radius:6px}
+[data-theme="dark"] .askmike-msg.assistant{background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.10)}
+.askmike-typing{display:flex;gap:5px;align-items:center;padding:13px}
+.askmike-typing span{width:6px;height:6px;border-radius:50%;background:currentColor;opacity:0.35;animation:askmike-bounce 1s infinite}
+.askmike-typing span:nth-child(2){animation-delay:0.15s}
+.askmike-typing span:nth-child(3){animation-delay:0.3s}
+@keyframes askmike-bounce{0%,60%,100%{transform:translateY(0);opacity:0.3}30%{transform:translateY(-4px);opacity:0.75}}
+.askmike-form{display:flex;gap:8px;align-items:center;background:rgba(255,255,255,0.9);border:1px solid rgba(0,0,0,0.08);border-radius:999px;padding:6px 6px 6px 16px;box-shadow:0 6px 20px rgba(0,0,0,0.07)}
+[data-theme="dark"] .askmike-form{background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.14);box-shadow:none}
+.askmike-form:focus-within{border-color:var(--accent);box-shadow:0 6px 22px color-mix(in oklab, var(--accent) 22%, transparent)}
+.askmike-input{flex:1;min-width:0;border:0;background:transparent;font:inherit;font-size:15px;color:inherit;outline:none;padding:8px 0}
+.askmike-input::placeholder{color:var(--ink-mute);opacity:0.75}
+.askmike-send{flex:none;width:38px;height:38px;border-radius:50%;border:0;background:var(--accent);color:#fff;font-size:17px;font-weight:700;cursor:pointer;transition:transform var(--t-fast),opacity var(--t-fast)}
+.askmike-send:hover:not(:disabled){transform:scale(1.06)}
+.askmike-send:disabled{opacity:0.35;cursor:default}
+.askmike-chips{display:flex;flex-wrap:wrap;gap:7px}
+.askmike-chip{font:inherit;font-size:12.5px;font-weight:600;padding:7px 12px;border-radius:999px;border:1px solid rgba(0,0,0,0.10);background:rgba(255,255,255,0.6);color:inherit;cursor:pointer;transition:background var(--t-fast),transform var(--t-fast)}
+[data-theme="dark"] .askmike-chip{background:rgba(255,255,255,0.08);border-color:rgba(255,255,255,0.14)}
+.askmike-chip:hover{background:rgba(255,255,255,0.95);transform:translateY(-1px)}
+[data-theme="dark"] .askmike-chip:hover{background:rgba(255,255,255,0.16)}
+@media (min-width:900px){.askmike-log{max-height:240px}.askmike-msg{font-size:14.5px}}
+
+/* Ask Mike as its own card beside the hero */
+.askmike-panel{margin:12px var(--pad-x);padding:20px;border-radius:var(--r-card);background:linear-gradient(160deg,#FFFFFF 0%,#F4F4F8 100%);box-shadow:var(--card-shadow);display:flex;flex-direction:column;position:relative;overflow:hidden}
+[data-theme="dark"] .askmike-panel{background:linear-gradient(160deg,#1C1C1E 0%,#0E0E10 100%);color:#F2F2F7}
+.askmike-panel .askmike{margin:0;flex:1;min-height:0;justify-content:flex-start}
+.askmike-title{font-family:"SF Pro Display",system-ui;font-size:24px;font-weight:800;letter-spacing:-0.02em;line-height:1.15;margin:6px 0 auto;text-wrap:pretty}
+@media (min-width:900px){.askmike-panel{padding:40px}.askmike-title{font-size:30px}}
+:root[data-layout="desktop"] .askmike-panel{padding:40px}
+:root[data-layout="desktop"] .askmike-title{font-size:30px}
+.askmike-panel .askmike-form{margin-top:auto}
+.askmike-panel .askmike-log{flex:1;min-height:0;max-height:none;overflow-y:auto}
+
+/* In the two-column Today grid, hero + chat card share equal height */
+@media (min-width:900px){:root:not([data-layout="mobile"]) .today-hero,:root:not([data-layout="mobile"]) .askmike-panel{min-height:420px}}
+:root[data-layout="desktop"] .today-hero,:root[data-layout="desktop"] .askmike-panel{min-height:420px}
 /* ---------- Theme toggle ---------- */
 .theme-toggle{position:absolute;top:14px;right:var(--pad-x);z-index:12;width:38px;height:38px;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:0 1px 2px rgba(0,0,0,0.06),0 6px 18px rgba(0,0,0,0.10);color:var(--ink-soft);transition:transform var(--t-fast),background var(--t-fast),color var(--t-fast)}
 [data-theme="dark"] .theme-toggle{background:rgba(28,28,30,0.78);box-shadow:0 1px 2px rgba(0,0,0,0.5),0 6px 18px rgba(0,0,0,0.5)}

@@ -42,6 +42,7 @@ function TodayPage({ onOpen, onAbout }) {
       <PageHeader kicker={todayKicker()} title="Today" />
       <div className="today-page-grid">
         <TodayHero roles={window.ROLES} onPick={onAbout} />
+        <window.AskMikePanel />
       </div>
 
       <FeaturedCard
