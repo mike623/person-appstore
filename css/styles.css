@@ -1155,11 +1155,16 @@ a { color: inherit; text-decoration: none; }
 :root[data-layout="desktop"] .askmike-panel{padding:40px}
 :root[data-layout="desktop"] .askmike-title{font-size:30px}
 .askmike-panel .askmike-form{margin-top:auto}
+/* Fixed height on mobile so the message log scrolls internally instead of the
+   card auto-growing down the page as the conversation fills up. */
+.askmike-panel{height:420px}
 .askmike-panel .askmike-log{flex:1;min-height:0;max-height:none;overflow-y:auto}
 
-/* In the two-column Today grid, hero + chat card share equal height */
-@media (min-width:900px){:root:not([data-layout="mobile"]) .today-hero,:root:not([data-layout="mobile"]) .askmike-panel{min-height:420px}}
-:root[data-layout="desktop"] .today-hero,:root[data-layout="desktop"] .askmike-panel{min-height:420px}
+/* In the two-column Today grid, hero + chat card stretch to equal height. */
+@media (min-width:900px){:root:not([data-layout="mobile"]) .today-page-grid{align-items:stretch}
+:root:not([data-layout="mobile"]) .today-hero,:root:not([data-layout="mobile"]) .askmike-panel{height:auto;min-height:420px}}
+:root[data-layout="desktop"] .today-page-grid{align-items:stretch}
+:root[data-layout="desktop"] .today-hero,:root[data-layout="desktop"] .askmike-panel{height:auto;min-height:420px}
 /* ---------- Theme toggle ---------- */
 .theme-toggle{position:absolute;top:14px;right:var(--pad-x);z-index:12;width:38px;height:38px;border-radius:var(--r-pill);display:flex;align-items:center;justify-content:center;background:rgba(255,255,255,0.72);backdrop-filter:blur(20px) saturate(180%);-webkit-backdrop-filter:blur(20px) saturate(180%);box-shadow:0 1px 2px rgba(0,0,0,0.06),0 6px 18px rgba(0,0,0,0.10);color:var(--ink-soft);transition:transform var(--t-fast),background var(--t-fast),color var(--t-fast)}
 [data-theme="dark"] .theme-toggle{background:rgba(28,28,30,0.78);box-shadow:0 1px 2px rgba(0,0,0,0.5),0 6px 18px rgba(0,0,0,0.5)}
