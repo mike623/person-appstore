@@ -264,6 +264,10 @@ function App() {
         {tab === 'arcade' && <HacksPage onOpen={setOpen} />}
         {tab === 'about'  && <AboutPage />}
       </main>
+      <ThemeToggle
+        theme={tweaks.theme}
+        onToggle={() => setTweak('theme', tweaks.theme === 'dark' ? 'light' : 'dark')}
+      />
       <TabBar active={tab} onChange={setTab} />
       <DetailSheet project={open} onClose={() => setOpen(null)} />
 
@@ -296,6 +300,20 @@ function App() {
         </window.TweakSection>
       </window.TweaksPanel>
     </div>
+  );
+}
+
+function ThemeToggle({ theme, onToggle }) {
+  const dark = theme === 'dark';
+  return (
+    <button
+      className="theme-toggle"
+      onClick={onToggle}
+      aria-label={dark ? 'Switch to light theme' : 'Switch to dark theme'}
+      title={dark ? 'Light mode' : 'Dark mode'}
+    >
+      <span className="theme-toggle-glyph">{dark ? '☾' : '☀'}</span>
+    </button>
   );
 }
 
