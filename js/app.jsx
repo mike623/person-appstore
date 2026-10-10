@@ -45,17 +45,18 @@ function TodayPage({ onOpen, onAbout }) {
         <window.AskMikePanel />
       </div>
 
-      <FeaturedCard
-        project={window.PROJECTS.find((p) => p.id === 'mr-carson')}
-        eyebrow="AI DRIVEN"
-        onOpen={onOpen}
-      />
-
-      <FeaturedCard
-        project={window.PROJECTS.find((p) => p.id === weeklyPickId())}
-        eyebrow="OUR PICK OF THE WEEK"
-        onOpen={onOpen}
-      />
+      <div className="featured-carousel">
+        <FeaturedCard
+          project={window.PROJECTS.find((p) => p.id === 'mr-carson')}
+          eyebrow="AI DRIVEN"
+          onOpen={onOpen}
+        />
+        <FeaturedCard
+          project={window.PROJECTS.find((p) => p.id === weeklyPickId())}
+          eyebrow="OUR PICK OF THE WEEK"
+          onOpen={onOpen}
+        />
+      </div>
 
       <SectionHeader kicker="FROM MIKE" title="A handful of side quests" />
       <div className="mid-row">
@@ -63,12 +64,6 @@ function TodayPage({ onOpen, onAbout }) {
           <MidCard key={p.id} project={p} rank={i + 1} onOpen={onOpen} />
         ))}
       </div>
-
-      <FeaturedCard
-        project={window.PROJECTS.find((p) => p.id === 'filmate')}
-        eyebrow="WE LOVE"
-        onOpen={onOpen}
-      />
 
       <SectionHeader kicker="HONG KONG MADE" title="Local apps, local love" />
       <div className="row-list responsive-grid">
