@@ -1,5 +1,29 @@
 [
   {
+    "id": "factory-archive",
+    "icon": "/assets/factory-archive/icon.png",
+    "screenshots": [
+      "/assets/factory-archive/screenshots/library.png",
+      "/assets/factory-archive/screenshots/detail.png",
+      "/assets/factory-archive/screenshots/import.png"
+    ],
+    "name": "Factory Archive",
+    "tagline": "Your Satisfactory Blueprints, Finally Organized",
+    "blurb": "A desktop blueprint manager for Satisfactory. Reads the .sbp files in your game folder by world, imports blueprints straight from SCIM or Satisfactory Blueprints links, and breaks down size, materials and buildings offline. Share your library over LAN, sync to WebDAV, and install mods — no more digging through save folders.",
+    "platform": "Desktop",
+    "language": "EN",
+    "category": "Games",
+    "started": "Oct 2026",
+    "funniness": 4,
+    "stack": "Tauri · Rust · React · TypeScript · Vite · GitHub Actions",
+    "url": "https://mike623.github.io/factory-archive/",
+    "monogram": "⬢",
+    "tint": { "from": "#FFAE3B", "to": "#A3600E" },
+    "hue": "#E8902B",
+    "featured": true,
+    "summary": "Collect, import, organize and share Satisfactory blueprints across worlds and with friends."
+  },
+  {
     "id": "scottish-tartan-finder",
     "icon": "/assets/scottish-tartan-finder/icon.svg",
     "screenshots": [
