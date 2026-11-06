@@ -1,5 +1,30 @@
 [
   {
+    "id": "ro-idle-tray",
+    "icon": "/assets/ro-idle-tray/icon.png",
+    "screenshots": [
+      "/assets/ro-idle-tray/screenshots/tray.png",
+      "/assets/ro-idle-tray/screenshots/panel.gif",
+      "/assets/ro-idle-tray/screenshots/assistant.gif",
+      "/assets/ro-idle-tray/screenshots/atlas.gif"
+    ],
+    "name": "RO Idle Tray",
+    "tagline": "Every Idle Character, One Menu-Bar Click Away",
+    "blurb": "A macOS menu-bar companion for ro-idle.app. Run several accounts side by side, watch every character's level, map, HP and EXP from one panel, and ask an AI assistant that reads live battle logs and game data. Bulk idle and recall, an offline map and monster atlas, and one table for every character's item settings.",
+    "platform": "Desktop",
+    "language": "EN · 中文",
+    "category": "Games",
+    "started": "Nov 2026",
+    "funniness": 5,
+    "stack": "Tauri · Rust · JavaScript · Playwright · GitHub Actions",
+    "url": "https://mike623.github.io/ro-idle-tray/",
+    "monogram": "Z",
+    "tint": { "from": "#FF9EBB", "to": "#B8345F" },
+    "hue": "#E85A88",
+    "featured": true,
+    "summary": "Menu-bar panel for every ro-idle character across accounts, with an AI assistant that knows the game."
+  },
+  {
     "id": "factory-archive",
     "icon": "/assets/factory-archive/icon.png",
     "screenshots": [
